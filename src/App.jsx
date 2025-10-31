@@ -43,7 +43,7 @@ function App() {
         </div>
       </nav>
 
-      <div className="container mt-4">
+      <div className="container-fluid mt-4">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/create" element={<Create />} />
@@ -52,7 +52,6 @@ function App() {
           <Route path="/read/:id" element={<Read />} />
         </Routes>
       </div>
-      <footer>PW2 - Avaliação II - Leandro - SC301455X</footer>
     </BrowserRouter>
   );
 }
