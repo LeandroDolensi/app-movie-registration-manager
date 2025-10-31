@@ -6,7 +6,6 @@ import { API_URL } from "../App";
 function Home() {
   const [data, setData] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-
   const recordsPerPage = 10;
 
   useEffect(() => {
@@ -18,11 +17,8 @@ function Home() {
 
   const lastIndex = currentPage * recordsPerPage;
   const firstIndex = lastIndex - recordsPerPage;
-
   const currentRecords = data.slice(firstIndex, lastIndex);
-
   const nPages = Math.ceil(data.length / recordsPerPage);
-
   const pageNumbers = Array.from({ length: nPages }, (_, i) => i + 1);
 
   function prePage(e) {
@@ -43,12 +39,34 @@ function Home() {
       setCurrentPage(currentPage + 1);
     }
   }
+
+  const homeStyle = {
+    backgroundImage: `url('https://img.goodfon.com/original/1366x768/c/93/hi-tech-technology-projector-katushki-kinoplenka-movie-retro.jpg')`,
+    backgroundSize: "cover",
+    backgroundPosition: "center",
+    backgroundAttachment: "fixed",
+    minHeight: "100vh",
+  };
+
+  const cardStyle = {
+    backgroundColor: "rgba(255, 255, 255, 0.7)",
+    backdropFilter: "blur(5px)",
+  };
+
+  const footerStyle = {
+    backgroundColor: "rgba(33, 37, 41, 0.7)",
+    backdropFilter: "blur(5px)",
+  };
+
   return (
-    <div className="d-flex flex-column justify-content-center align-items-center py-5">
-      <h1>Catálogo de Filmes</h1>
-      <div className="w-75 rounded bg-white border shadow p-4">
+    <div
+      className="d-flex flex-column justify-content-center align-items-center py-5"
+      style={homeStyle}
+    >
+      <h1 className="text-white">Catálogo de Filmes</h1>
+
+      <div className="w-75 rounded border shadow p-4" style={cardStyle}>
         <div className="d-flex justify-content-end">
-          {/* Botão para navegar para a página de criação */}
           <Link to="/create" className="btn btn-success">
             Criar Novo Filme
           </Link>
@@ -73,6 +91,7 @@ function Home() {
             ))}
           </tbody>
         </table>
+
         {nPages > 1 && (
           <nav className="mt-3">
             <ul className="pagination justify-content-center">
@@ -88,6 +107,7 @@ function Home() {
                   <span aria-hidden="true">&laquo;</span>
                 </a>
               </li>
+
               {pageNumbers.map((n) => (
                 <li
                   className={`page-item ${currentPage === n ? "active" : ""}`}
@@ -102,6 +122,7 @@ function Home() {
                   </a>
                 </li>
               ))}
+
               <li
                 className={`page-item ${
                   currentPage === nPages ? "disabled" : ""
@@ -120,9 +141,13 @@ function Home() {
           </nav>
         )}
       </div>
-      <footer className="w-75 mt-4 bg-dark text-white text-center p-3 rounded">
+
+      <footer
+        className="w-75 mt-4 text-white text-center p-3 rounded"
+        style={footerStyle}
+      >
         <p className="mb-0">
-          &copy; {new Date().getFullYear()} Catálogo de Filmes. PW2 - Avaliação
+          &copy; {new Date().getFullYear()} atálogo de Filmes. PW2 - Avaliação
           II - SC301455X
         </p>
       </footer>
